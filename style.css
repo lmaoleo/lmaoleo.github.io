@@ -108,6 +108,12 @@ div.header .title .logo img {
 
 div.content {
     margin: 100px 25px 80px 25px;
+    overflow: hidden;
+}
+
+div.content h3 {
+    font-weight: bold;
+    font-size: 25px;
 }
 
 div.quest {
@@ -126,6 +132,10 @@ div.quest p {
     position: relative;
     left: 39px;
     bottom: 35px;
+}
+
+div.quest .link {
+    width: 80%;
 }
 
 div.quest .logo {
@@ -147,7 +157,12 @@ div.quest .action-icon {
     height: 30px;
     float: right;
     right: 3%;
-    bottom: 25px;
+    bottom: 15px;
+}
+
+div.quest .action-icon img {
+    width: 100%;
+    height: auto;
 }
 
 /* Footer */
@@ -162,6 +177,7 @@ div.footer {
     color: var(--secondary-color);
     border-top: var(--border-color) 1px solid;
     padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 div.footer {

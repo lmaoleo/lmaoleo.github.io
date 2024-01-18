@@ -51,7 +51,7 @@ QUESTS = [
     },
 ]
 
-const NUMBER = 5;
+const NUMBER = 9;
 
 
 function addQuest(title, credit, action, link, logo, image) {
@@ -65,9 +65,11 @@ function addQuest(title, credit, action, link, logo, image) {
             <h4>${title}</h4>
         </div>
         <p>+${credit} crédits</span></p>
-        <a href="${link}">${action}</a>
-        <a href="">
-            <img class="action-icon" src="${image}">
+        <div class="link">
+            <a href="${link}">${action}</a>
+        </div>
+        <a href="" class="action-icon">
+            <img src="${image}">
         </a>
     `
     document.getElementsByClassName('quests')[0].appendChild(quest);
