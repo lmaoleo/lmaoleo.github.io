@@ -10,7 +10,7 @@ QUESTS = [
         image: "assets/calendar.svg",
         success: {
             text: "Bravo, tu as gagné 100 crédits !",
-            icon: "assets/help.svg"
+            icon: "assets/success.svg"
         }
     },
     {
@@ -31,7 +31,7 @@ QUESTS = [
         image: "assets/calendar.svg",
         success: {
             text: "Bravo, tu as gagné 150 crédits !",
-            icon: "assets/help.svg"
+            icon: "assets/success.svg"
         }
     },
     {
@@ -43,7 +43,7 @@ QUESTS = [
         image: "assets/family.svg",
         success: {
             text: "Bravo, tu as gagné 100 crédits !",
-            icon: "assets/help.svg"
+            icon: "assets/success.svg"
         }
     },
     {
@@ -64,7 +64,7 @@ QUESTS = [
         image: "assets/family.svg",
         success: {
             text: "Bravo, tu as gagné 25 crédits !",
-            icon: "assets/help.svg"
+            icon: "assets/success.svg"
         }
     },
 ]
