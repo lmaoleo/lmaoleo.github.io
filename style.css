@@ -49,6 +49,57 @@ div.content h3 {
 }
 
 
+/* Notifications */
+
+div.notification {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    color: var(--secondary-color);
+    border-top: var(--border-color) 1px solid;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    z-index: 2;
+    pointer-events: none;
+}
+
+div.notification > div {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: 130px;
+    margin-bottom: 10px;
+    background-color: var(--main-color);
+    color: var(--secondary-color);
+    border: var(--border-color) 2px solid;
+    border-radius: 25px;
+    padding: 10px;
+    overflow: hidden;
+}
+
+div.notification > div img {
+    width: 10%;
+    height: auto;
+    margin-right: 20px;
+}
+
+div.notification > div p {
+    width: 80%;
+    height: auto;
+    top: 50%;
+    left: 10%;
+    font-size: 20px;
+    color: var(--text-color1);
+}
+
 
 /* Header */
 
@@ -138,6 +189,10 @@ div.quest .link {
     width: 80%;
 }
 
+div.quest .link a {
+    cursor: pointer;
+}
+
 div.quest .logo {
     position: relative;
     width: 20px;
@@ -157,7 +212,7 @@ div.quest .action-icon {
     height: 30px;
     float: right;
     right: 3%;
-    bottom: 15px;
+    bottom: 32px;
 }
 
 div.quest .action-icon img {

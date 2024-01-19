@@ -7,7 +7,11 @@ QUESTS = [
         action: "Prendre Rendez-Vous ici",
         link: "",
         logo: "assets/logoEFS.webp",
-        image: "assets/calendar.svg"
+        image: "assets/calendar.svg",
+        success: {
+            text: "Bravo, tu as gagné 100 crédits !",
+            icon: "assets/help.svg"
+        }
     },
     {
         title: "En partageant aux autres",
@@ -15,7 +19,8 @@ QUESTS = [
         action: "Partager vos bonnes actions",
         link: "https://www.instagram.com/",
         logo: "assets/share.svg",
-        image: "assets/send.svg"
+        image: "assets/send.svg",
+        success: null
     },
     {
         title: "En Atteignant 20 dons dans ta famille",
@@ -23,7 +28,11 @@ QUESTS = [
         action: "Prendre Rendez-Vous ici",
         link: "",
         logo: "assets/family2.svg",
-        image: "assets/calendar.svg"
+        image: "assets/calendar.svg",
+        success: {
+            text: "Bravo, tu as gagné 150 crédits !",
+            icon: "assets/help.svg"
+        }
     },
     {
         title: "En ayant 25 personnes dans ta famille",
@@ -31,7 +40,11 @@ QUESTS = [
         action: "Trouve ton code de parainage ici",
         link: "",
         logo: "assets/family2.svg",
-        image: "assets/family.svg"
+        image: "assets/family.svg",
+        success: {
+            text: "Bravo, tu as gagné 100 crédits !",
+            icon: "assets/help.svg"
+        }
     },
     {
         title: "En suivant l'EFS sur instagram",
@@ -39,7 +52,8 @@ QUESTS = [
         action: "Le compte instagram de l'EFS ici",
         link: "https://www.instagram.com/efs_officiel/",
         logo: "assets/share.svg",
-        image: "assets/send.svg"
+        image: "assets/send.svg",
+        success: null
     },
     {
         title: "En parrainant un donneur",
@@ -47,17 +61,28 @@ QUESTS = [
         action: "Trouve ton code de parainage ici",
         link: "",
         logo: "assets/family2.svg",
-        image: "assets/family.svg"
+        image: "assets/family.svg",
+        success: {
+            text: "Bravo, tu as gagné 25 crédits !",
+            icon: "assets/help.svg"
+        }
     },
 ]
 
-const NUMBER = 9;
+const NUMBER = 6;
 
 
-function addQuest(title, credit, action, link, logo, image) {
+function addQuest(title, credit, action, link, logo, image, success = null) {
     var quest = document.createElement('div');
     quest.className = 'quest';
-    quest.innerHTML = /*html*/`
+    var clickableTextAction = document.createElement('a');
+    if (success != null) {
+        clickableTextAction.onclick = () => endQuest(quest, success);
+    } else {
+        clickableTextAction.href = link;
+    }
+    clickableTextAction.innerHTML = action;
+    quest.innerHTML = `
         <div>
             <div class="logo">
                 <img src="${logo}" alt="">
@@ -66,19 +91,39 @@ function addQuest(title, credit, action, link, logo, image) {
         </div>
         <p>+${credit} crédits</span></p>
         <div class="link">
-            <a href="${link}">${action}</a>
         </div>
-        <a href="" class="action-icon">
+        <a href="${link}" class="action-icon">
             <img src="${image}">
         </a>
     `
+    quest.getElementsByClassName('link')[0].appendChild(clickableTextAction);
     document.getElementsByClassName('quests')[0].appendChild(quest);
 }
 
-
-//addQuest("Test1", 35, "Click", "assets/logoEFS.webp", "assets/help.svg");
-
 for (let i = 0; i < NUMBER; i++) {
     var sel = Math.floor(Math.random() * QUESTS.length);
-    addQuest(QUESTS[sel].title, QUESTS[sel].credit, QUESTS[sel].action, QUESTS[sel].link, QUESTS[sel].logo, QUESTS[sel].image);
+    addQuest(QUESTS[sel].title, QUESTS[sel].credit, QUESTS[sel].action, QUESTS[sel].link, QUESTS[sel].logo, QUESTS[sel].image, QUESTS[sel].success);
+    QUESTS.splice(sel, 1);
+}
+
+function notify(text, icon) {
+    var notificationDiv = document.getElementById('notif-div');
+    var notif = document.createElement('div');
+    notif.innerHTML = `
+        <img src="${icon}" alt="">
+        <p>${text}</p>
+    `;
+    notificationDiv.appendChild(notif);
+    setTimeout(() => {
+        notif.remove();
+    }, 3000);
+}
+
+function endQuest(quest, success) {
+    if (success) {
+        notify(success.text, success.icon);
+    }
+    if (quest) {
+        quest.remove();
+    }
 }
