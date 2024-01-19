@@ -71,6 +71,10 @@ QUESTS = [
 
 const NUMBER = 6;
 
+const sleep = (milliseconds) => {
+    return new Promise(resolve => setTimeout(resolve, milliseconds))
+}
+
 
 function addQuest(title, credit, action, link, logo, image, success = null) {
     var quest = document.createElement('div');
@@ -106,7 +110,7 @@ for (let i = 0; i < NUMBER; i++) {
     QUESTS.splice(sel, 1);
 }
 
-function notify(text, icon) {
+async function notify(text, icon) {
     var notificationDiv = document.getElementById('notif-div');
     var notif = document.createElement('div');
     notif.innerHTML = `
@@ -114,9 +118,12 @@ function notify(text, icon) {
         <p>${text}</p>
     `;
     notificationDiv.appendChild(notif);
-    setTimeout(() => {
-        notif.remove();
-    }, 3000);
+    await sleep(1);
+    notif.classList.add('apear');
+    await sleep(2000);
+    notif.classList.remove('apear');
+    await sleep(350);
+    notif.remove();
 }
 
 function endQuest(quest, success) {
